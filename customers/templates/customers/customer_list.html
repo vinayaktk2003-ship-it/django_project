@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customers</title>
+</head>
+<body>
+    <h1>Customer List</h1>
+    <a href="{% url 'customer-create' %}">+ Add New Customer</a>
+    <hr>
+    <ul>
+    {% for customer in customers %}
+        <li>
+            <a href="{% url 'customer-detail' customer.pk %}">
+                {{ customer.name }}
+            </a>
+            ({{ customer.email }})
+            |
+            <a href="{% url 'customer-update' customer.pk %}">Edit</a>
+            |
+            <a href="{% url 'customer-delete' customer.pk %}">Delete</a>
+        </li>
+    {% empty %}
+        <li>No customers yet.</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
